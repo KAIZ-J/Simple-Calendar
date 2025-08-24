@@ -29,7 +29,7 @@
  function nextRepeater(toBeSubtracted){
   let str = "";
   let num = 42 - toBeSubtracted;
-  for(let i=1;i<num;i++){
+  for(let i=1;i<=num;i++){
   str+=`<span class="leftover-days">${i}</span>`
   }
   return str;
