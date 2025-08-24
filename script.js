@@ -21,7 +21,7 @@
  let dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
  function repeater(times,daynumber){
   let str = "";
-  for(let i=times;i>0;i--){
+  for(let i=times-1;i>=0;i--){
   str+=`<span class="leftover-days">${daynumber-i}</span>`
   }
   return str;
@@ -121,12 +121,12 @@
    cy.textContent=`${numother}/`;
    if(entry.target.id===`${month}-${currentYear}`){
   todaysDateBtn.style.opacity="0";
-  todaysDateBtn.style.transform="translateY(-50%)";
+  todaysDateBtn.style.scale="0";
   
    }
    else{
     todaysDateBtn.style.opacity="1";
-    todaysDateBtn.style.transform="translateY(0%)";
+    todaysDateBtn.style.scale="1";
    }
     }
   })

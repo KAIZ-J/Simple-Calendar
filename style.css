@@ -53,7 +53,6 @@ transform: translateY(-5px);
   scroll-snap-align: start;
            height: 300px;
             width: 100%;
-            
             text-align: center;
             flex-shrink: 0;/*prolly plays the main role*/
             background-color: var(--primary);
@@ -117,12 +116,13 @@ transform: translateY(-5px);
      font-size: 1.2rem;
      font-weight: bolder;
      position: fixed;
-     bottom: 1.2rem;
-     right: 2rem;
+     position-anchor: --container;
+     position-area: bottom right;
      cursor: pointer;
      opacity: 0;
-     transform: translateY(-50%);
-     transition: opacity .3s ease,transform 1s ease;
+     transform: translate(-90%,20px);
+     scale: 1;
+     transition: opacity .3s ease,scale 1s ease;
       }
       @media (max-width:450px) {
             .dates{
