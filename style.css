@@ -1,0 +1,174 @@
+  :root{
+  --text: #1a0f0f;
+  --background: #f0e6e6;
+  --primary: #573334;
+  --secondary: #96c0a0;
+  --accent: #609f9d;
+}
+body.dark{
+--text: #f0e6e6;
+  --background: #190f0f;
+  --primary: #cba7a8;
+  --secondary: #3f6949;
+  --accent: #60a09e;
+}
+
+      body {
+        background-color: var(--background);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: var(--text);
+        font-family: poppins;
+        flex-direction: column;
+      }
+      h1{
+        font-family: Audiowide;
+font-size: 1.7rem;
+transform: translateY(-5px);
+      }
+      h1 span:nth-child(1){
+        cursor: pointer;
+      }
+      #container {
+       
+        width: 430px;
+            overflow-x: scroll;
+            display: flex;
+            gap: 20px;
+            scroll-snap-type: x mandatory;
+            cursor: pointer;
+            border:none;
+            scroll-behavior: smooth;
+            anchor-name: --container;
+            border-radius: 10px;
+            
+      }
+      #container::-webkit-scrollbar{
+        display: none;
+      }
+      .month{
+  scroll-snap-align: start;
+           height: 300px;
+            width: 100%;
+            
+            text-align: center;
+            flex-shrink: 0;/*prolly plays the main role*/
+            background-color: var(--primary);
+            border-radius: 10px;
+            color: rgb(194, 194, 210);
+      }
+       #container::scroll-button(right),#container::scroll-button(left){
+     content: '>';
+     background-color: var(--secondary);
+     color: var(--text);
+     border: none;
+     border-radius:10px;
+     width: 40px;
+     height: 40px; 
+     cursor: pointer;
+     position: fixed;
+     position-anchor: --container;
+     position-area: right top;
+    transform: translate(-60px,-20px);
+    font-family: poppins;
+    font-size: 1.5rem;
+       }
+        #container::scroll-button(left){
+     content: '<';
+     position-area: left top;
+     transform: translate(60px,-20px);
+       }
+       #container::scroll-button(right):disabled,#container::scroll-button(left):disabled{
+        opacity: 0.5;
+        cursor: auto;
+       }
+      .days {
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        gap: 20px;
+        color: var(--secondary);
+        font-weight: bolder;
+              }
+      .dates{
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        gap: 20px;
+        color: var(--background);
+      }
+      .months-number.active{
+     background-color: var(--accent);
+     color: var(--text);
+     border-radius: 5px;
+     margin-left:5px;
+     margin-right:5px;
+      }
+      #todays-date{
+         background-color: var(--accent);
+     color: var(--background);
+     border-radius: 50%;
+     padding: 10px;
+     height: 30px;
+     width: 30px;
+     align-content: center;
+     text-align: center;
+     font-size: 1.2rem;
+     font-weight: bolder;
+     position: fixed;
+     bottom: 1.2rem;
+     right: 2rem;
+     cursor: pointer;
+     opacity: 0;
+     transform: translateY(-50%);
+     transition: opacity .3s ease,transform 1s ease;
+      }
+      @media (max-width:450px) {
+            .dates{
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        gap: 10px;
+        color: var(--background);
+        
+      }
+      .days {
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        gap: 10px;
+        color: var(--secondary);
+        font-weight: bolder;
+              }
+      .dates span{
+        height: 30px;
+        align-content: center;
+      }
+      #container{
+        width: 360px;
+      }
+      h1{
+        font-size: 1.42rem;
+        transform: translateY(-10px);
+      }
+      }
+      #display-year{
+        display: none;
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+        height: 300px;
+        color: white;
+      }
+      #display-year span{
+        background-color: var(--primary);
+        color: var(--background);
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        text-align: center;
+        align-content: center;
+        padding: 5px;
+        cursor: pointer;
+      }
+      .leftover-days{
+        color: rgb(100, 88, 88);
+      }
