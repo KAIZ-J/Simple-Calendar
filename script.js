@@ -21,7 +21,7 @@
  let dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
  function repeater(times,daynumber){
   let str = "";
-  for(let i=times;i>=0;i--){
+  for(let i=times;i>0;i--){
   str+=`<span class="leftover-days">${daynumber-i}</span>`
   }
   return str;
