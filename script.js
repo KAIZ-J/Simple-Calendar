@@ -3,6 +3,7 @@
       const cy = document.getElementById("current-year")
       const cmn = document.getElementById("current-month-number")
      const container= document.getElementById("container")
+     const holidayContainer = document.getElementById("holiday-container")
       document.addEventListener("DOMContentLoaded", containerAdd);
       const months = [
   { name: "January", daysNumber: 31},
@@ -18,6 +19,77 @@
   { name: "November", daysNumber: 30},
   { name: "December", daysNumber: 31}
 ];
+const holidays = [
+  // January
+  { day: "January-1", holidayName: "New Year's Day" },
+  { day: "January-15", holidayName: "World Religion Day" },
+  { day: "January-27", holidayName: "Lailat al Miraj" },
+
+  // February
+  { day: "February-4", holidayName: "World Cancer Day" },
+  { day: "February-14", holidayName: "Mid-Sha‘ban" },
+  { day: "February-20", holidayName: "World Day of Social Justice" },
+
+  // March
+  { day: "March-1", holidayName: "Ramadan Begins" },
+  { day: "March-8", holidayName: "International Women's Day" },
+  { day: "March-20", holidayName: "International Day of Happiness" },
+  { day: "March-22", holidayName: "World Water Day" },
+  { day: "March-27", holidayName: "Laylat al-Qadr" },
+  { day: "March-31", holidayName: "Eid al-Fitr" },
+
+  // April
+  { day: "April-7", holidayName: "World Health Day" },
+  { day: "April-22", holidayName: "Earth Day" },
+
+  // May
+  { day: "May-1", holidayName: "International Labour Day" },
+  { day: "May-15", holidayName: "International Day of Families" },
+  { day: "May-21", holidayName: "World Day for Cultural Diversity" },
+  { day: "May-31", holidayName: "World No-Tobacco Day" },
+
+  // June
+  { day: "June-5", holidayName: "World Environment Day" },
+  { day: "June-5", holidayName: "Day of Arafat" },
+  { day: "June-6", holidayName: "Eid al-Adha" },
+  { day: "June-8", holidayName: "World Oceans Day" },
+  { day: "June-20", holidayName: "World Refugee Day" },
+  { day: "June-26", holidayName: "Hijri New Year" },
+
+  // July
+  { day: "July-11", holidayName: "World Population Day" },
+  { day: "July-18", holidayName: "Nelson Mandela International Day" },
+
+  // August
+  { day: "August-12", holidayName: "International Youth Day" },
+  { day: "August-19", holidayName: "World Humanitarian Day" },
+
+  // September
+  { day: "September-4", holidayName: "Mawlid an-Nabi" },
+  { day: "September-8", holidayName: "International Literacy Day" },
+  { day: "September-15", holidayName: "International Day of Democracy" },
+  { day: "September-21", holidayName: "International Day of Peace" },
+  { day: "September-27", holidayName: "World Tourism Day" },
+
+  // October
+  { day: "October-1", holidayName: "International Day of Older Persons" },
+  { day: "October-2", holidayName: "International Day of Non-Violence" },
+  { day: "October-5", holidayName: "World Teachers' Day" },
+  { day: "October-16", holidayName: "World Food Day" },
+  { day: "October-24", holidayName: "United Nations Day" },
+
+  // November
+  { day: "November-14", holidayName: "World Diabetes Day" },
+  { day: "November-16", holidayName: "International Day for Tolerance" },
+  { day: "November-20", holidayName: "Universal Children’s Day" },
+
+  // December
+  { day: "December-1", holidayName: "World AIDS Day" },
+  { day: "December-10", holidayName: "Human Rights Day" },
+  { day: "December-25", holidayName: "Christmas" },
+  { day: "December-31", holidayName: "New Year's Eve" }
+];
+
  let dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
  function repeater(times,daynumber){
   let str = "";
@@ -25,6 +97,12 @@
   str+=`<span class="leftover-days">${daynumber-i}</span>`
   }
   return str;
+ }
+ function sliceMiddle(str){
+    let array = [];
+    array.push(str.split("-")[0])
+    array.push(str.split("-")[2])
+    return array.join("-")
  }
  function nextRepeater(toBeSubtracted){
   let str = "";
@@ -81,6 +159,16 @@
         return str;
    
       }
+      function addToHolidays(array){
+        holidayContainer.innerHTML="";
+        array.forEach(({day,holidayName})=>{
+            holidayContainer.innerHTML+=` <div>
+          <p>${holidayName}</p>
+          <span>${day.split("-")[1]}</span>
+        </div>
+            `
+        })
+      }
     function containerAdd(){
        const today = new Date();
          const date = today.getDate();
@@ -118,6 +206,7 @@
     let numother = entry.target.id.split('-')[1]
    if(entry.isIntersecting){
    cmn.textContent=num;
+   addToHolidays(holidays.filter(el=>el.day.split('-')[0]===entry.target.id.split('-')[0]))
    cy.textContent=`${numother}/`;
    if(entry.target.id===`${month}-${currentYear}`){
   todaysDateBtn.style.opacity="0";
@@ -161,6 +250,7 @@
       function goToMonth(elem){
          container.style.display="flex"
           displayYear.style.display="none";
+          todaysDateBtn.style.transform="translate(-90%,20px)"
           document.querySelector("h1").style.display="block";
           document.getElementById(`${elem.id.slice(8)}`).scrollIntoView({behavior:"smooth"})
       }
