@@ -14,23 +14,19 @@
     />
     <link rel="stylesheet" href="style.css">
   </head>
-  <body class="dark">
+  <body>
     <h1>
       <span id="current-year" onclick="displayTheYear(this)">2025/</span><span id="current-month-number">1</span></h1>
     <div id="container">
       </div>
       <div id="todays-date" onclick="goScroll()">23</div>
       <div id="holiday-container">
-        <div>
-          <p>Ramadan</p>
-          <span>March 23</span>
-        </div>
-        <div>
-          <span>Eid Mubarak</span>
-          <span>March 23</span>
-        </div>
+        
       </div>
-      <div id="display-year"></div>
+     
+      <dialog id="jump-to-date">
+         <div id="display-year"></div>
+      </dialog>
     <script src="script.js">
      
     </script>

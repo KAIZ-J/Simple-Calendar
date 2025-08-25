@@ -1,17 +1,23 @@
-  :root{
+  @media (prefers-color-scheme: light) {
+   :root{
   --text: #1a0f0f;
   --background: #f0e6e6;
   --primary: #573334;
   --secondary: #96c0a0;
   --accent: #609f9d;
-}
-body.dark{
+} 
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root{
 --text: #f0e6e6;
   --background: #190f0f;
   --primary: #cba7a8;
   --secondary: #3f6949;
   --accent: #60a09e;
 }
+  }
+
 
       body {
         background-color: var(--background);
@@ -120,7 +126,7 @@ transform: translateY(-5px);
      position-area: bottom right;
      cursor: pointer;
      opacity: 0;
-     transform: translate(-90%,20px);
+     transform: translate(20px,0);
      scale: 1;
      transition: opacity .3s ease,scale .5s ease;
       }
@@ -131,6 +137,9 @@ transform: translateY(-5px);
         gap: 10px;
         color: var(--background);
         
+      }
+      #todays-date{
+        transform: translate(-70px,170px);
       }
       .days {
         display: grid;
@@ -154,14 +163,24 @@ transform: translateY(-5px);
       #display-year{
         display: none;
         grid-template-columns: repeat(3,1fr);
-        gap: 10px;
-        height: 300px;
+        row-gap: 15px;
+        column-gap: 10px;
         color: white;
+        align-content: center;
+      }
+      dialog{
+        width: 200px;
+        height: 250px;
+        align-content: center;
+        border: 5px solid var(--accent);
+        border-radius: 10px;
+        outline: none;
+        backface-visibility:hidden;
       }
       #display-year span{
         background-color: var(--primary);
         color: var(--background);
-        width: 100px;
+        width: 50px;
         height: 30px;
         border-radius: 10px;
         text-align: center;
@@ -177,13 +196,15 @@ transform: translateY(-5px);
         display: flex;
         flex-direction: column;
         gap: 10px;
-        height: 100px;
+        height: 150px;
         overflow-y: auto;
       }
       #holiday-container::-webkit-scrollbar{
         display: none;
+        
       }
       #holiday-container div{
+        cursor: pointer;
         background-color: var(--primary);
         width: 350px;
         align-content: center;

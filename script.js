@@ -5,6 +5,7 @@
      const container= document.getElementById("container")
      const holidayContainer = document.getElementById("holiday-container")
       document.addEventListener("DOMContentLoaded", containerAdd);
+      const jumpToDateDialog = document.getElementById("jump-to-date")
       const months = [
   { name: "January", daysNumber: 31},
   { name: "February", daysNumber: 28},
@@ -234,23 +235,19 @@ const holidays = [
        document.getElementById(`${month}-${currentYear}`).scrollIntoView({behavior:"smooth"})
     }
       function displayTheYear(elem){
-          todaysDateBtn.style.opacity="0";
-  todaysDateBtn.style.transform="translateY(-50%)";
-        displayYear.innerHTML=""
-        elem.parentElement.style.display="none"
-        container.style.display="none"
-         displayYear.style.display="grid"
+        displayYear.innerHTML="";
+         displayYear.style.display="grid";
+         jumpToDateDialog.showModal();
         for(let i=0;i<12;i++){
           displayYear.innerHTML+=`
-            <span id="display-${months[i].name}-${elem.textContent.slice(0,4)}" onclick="goToMonth(this)">${months[i].name}</span>
+            <span id="display-${months[i].name}-${elem.textContent.slice(0,4)}" onclick="goToMonth(this)">${months[i].name.slice(0,3)}</span>
           `
         }
        
       }
       function goToMonth(elem){
-         container.style.display="flex"
-          displayYear.style.display="none";
-          todaysDateBtn.style.transform="translate(-90%,20px)"
+         container.style.display="flex";
+         jumpToDateDialog.close();
           document.querySelector("h1").style.display="block";
           document.getElementById(`${elem.id.slice(8)}`).scrollIntoView({behavior:"smooth"})
       }
